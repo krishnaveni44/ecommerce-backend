@@ -21,11 +21,17 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.static("./views"));
 app.set("view engine", "ejs");
 
+app.get('/',(req,res)=>{
+  res.send('hello world');
+});
+
 app.use("/", route);
+
 app.use("*", function(req,res){
     res.status(404);
     res.send({message:"page not found"})
 });
+
 
 mongoose.set("strictQuery", true);
 
@@ -44,3 +50,5 @@ const PORT = process.env.PORT || 1500;
 app.listen(PORT, () => {
   console.log(`server listening on PORT ${PORT}`);
 });
+
+
